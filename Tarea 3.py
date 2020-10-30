@@ -50,4 +50,23 @@ sns.catplot(x = "weekday", y =  "Drinks%", data = df, kind = "box");
 sns.catplot(x = "weekday", y =  "Home%", data = df, kind = "box");
 sns.catplot(x = "weekday", y =  "Beauty%", data = df, kind = "box");
 
+
+
 # %%
+df.plot.scatter(x="weekday",y="discount%")
+
+# %%
+df.plot.scatter(x="weekday",y="hour")
+
+# %%
+df.plot.scatter(x="weekday",y="Food%")
+
+
+# %%
+df.plot.scatter(x="weekday",y="Fresh%")
+
+# %%
+sns.catplot(x = "weekday", y =  "discount%", data = df, kind = "box");
+
+# %%
+sns.catplot(x = "weekday", y =  "discount%", data = df, kind = "box");
