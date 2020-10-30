@@ -1,6 +1,7 @@
 # %%
 
 import pandas as pd
+import numpy as np
 from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -9,7 +10,7 @@ from kneed import KneeLocator
 #%%
 df = pd.read_csv("ulabox_orders_with_categories_partials_2017.csv")
 
-dfp = df[["hour", "weekday"]]
+dfp = df[["total_items","discount%","weekday","hour","Food%","Fresh%","Drinks%","Home%","Beauty%","Health%","Baby%","Pets%"]]
 
 #%%
 
@@ -29,30 +30,45 @@ k = round(kneedle.knee)
 print(f"Numbre of clusters: {k}")
 
 # %%
-kmeans = KMeans(n_clusters=k).fit(df[["total_items", "weekday"]])
-sns.scatterplot(data=df, x="weekday", y="total_items", hue="")
-plt.show()
+kmeans = KMeans(n_clusters=k).fit(df[["total_items","discount%","weekday","hour","Food%","Fresh%","Drinks%","Home%","Beauty%","Health%","Baby%","Pets%"]])
+#sns.scatterplot(data=df, x="weekday", y="total_items", hue="hour")
+print(kmeans.cluster_centers_)
+
+# %%
+kmeans.cluster_centers_
+
+# %%
+import numpy as np
+np.linalg.norm(kmeans.cluster_centers_[0] - kmeans.cluster_centers_[1] )
 
 # %%
 cluster0 = df[kmeans.labels_ == 0]
 cluster0.describe()
+cluster0[["Food%","Fresh%","Drinks%","Home%","Beauty%","Health%","Baby%","Pets%"]].sum().plot.bar()
+plt.show()
 
-#%%
-"""
-== distancia euclidiana ==
-Entrada:
-    obj1, obj2: Objetos a regrupar (diccionarios)
-    attributes: Lista de attributos (strings) a considerar para el cálculo de la distancia  
-"""
-def distance(obj1, obj2, attributes):
-    return 0
+# %%
+cluster1 = df[kmeans.labels_ == 1]
+cluster1.describe()
+cluster1[["Food%","Fresh%","Drinks%","Home%","Beauty%","Health%","Baby%","Pets%"]].sum().plot.bar()
+plt.show()
 
-"""
-== K-Means ==
-Entrada:
-    k: Número de clústeres,
-	D: Dataset compuesto de n objetos
-"""
+# %%
+cluster2 = df[kmeans.labels_ == 2]
+cluster2.describe()
+cluster2[["Food%","Fresh%","Drinks%","Home%","Beauty%","Health%","Baby%","Pets%"]].sum().plot.bar()
+plt.show()
+
+# %%
+cluster3 = df[kmeans.labels_ == 3]
+cluster3.describe()
+cluster3[["Food%","Fresh%","Drinks%","Home%","Beauty%","Health%","Baby%","Pets%"]].sum().plot.bar()
+plt.show()
+
+# %%
+
+
+
 def kmeans(k, D, attributes):
 
     return []
