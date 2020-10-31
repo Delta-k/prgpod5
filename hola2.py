@@ -1,4 +1,5 @@
 # %%
+#estos son ejercicios de estadística y gráficos
 import pandas as pd
 import numpy as np
 #%%
