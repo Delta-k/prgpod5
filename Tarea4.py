@@ -39,7 +39,14 @@ kmeans.cluster_centers_
 
 # %%
 import numpy as np
-np.linalg.norm(kmeans.cluster_centers_[0] - kmeans.cluster_centers_[1] )
+matriz_distancias = []
+for i in range(4):
+    vector=[]
+    for j in range(4):
+        newDistancia =np.linalg.norm(kmeans.cluster_centers_[i]-kmeans.cluster_centers_[j])
+        vector.append(newDistancia)
+    matriz_distancias.append.vector()
+
 
 # %%
 cluster0 = df[kmeans.labels_ == 0]
